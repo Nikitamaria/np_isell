@@ -8,7 +8,7 @@ class ProfilesController < ApplicationController
   	@profile = current_user.buld_profile(profile_params)
   	if @profile.save
   		flash[:notice] = "You have created a new profile"
-  		redirect_to profile_path
+  		redirect_to profile_path(@profile)
   	else
   		render :new
   	end
@@ -23,6 +23,9 @@ class ProfilesController < ApplicationController
   	@profile = current_user.build_profile(profile_params)
   end
 
+  def new 
+
+  end 
   private
 
   def profile_params

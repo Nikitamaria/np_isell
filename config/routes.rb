@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   get 'profiles/new'
+  resources :profiles
 
-  devise_for :users
+  # Add devises registrations controller to allpow after sign up pathc
+  devise_for :users, controllers: { registrations: "registrations"}
   root 'home#index'	
   get 'home/index'
 
