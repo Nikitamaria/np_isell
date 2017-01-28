@@ -7,6 +7,9 @@ class User < ApplicationRecord
 
   has_one :profile
 
+  has_many :purchases, class_name: "Order", foreign_key: "buyer_id"
+  has_many :sales, class_name: "Order", foreign_key: "seller_id"
+
   after_create :assign_role
 
   def assign_role

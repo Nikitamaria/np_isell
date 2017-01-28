@@ -11,8 +11,23 @@
  </p>
 
  <p>
-	 <strong>Last name:</strong>
+	 <strong>Expiry date:</strong>
 	 <%= @profile.last_name %>
+ </p>
+
+ <p>
+	 <strong>Posted date:</strong>
+	 <%= @item.posted_date %>
+ </p>
+
+ <p>
+ <strong>Price:</strong>
+ <%= number_to_currency(@item.price) %>
+ </p>
+
+ <p>
+ <strong>Seller:</strong>
+ <%= @item.user.email %>
  </p>
 
  <p>
@@ -20,8 +35,38 @@
 	 <%= image_tag(@profile.picture_url(:thumbnail), :width => 50, :height => 50) %>
  </p>
 
- <% if current_user.profile == @profile %>
- 	<%= link_to 'Edit', edit_profile_path(@profile), class: 'btn btn-warning' %>
+ <% if can? :manage, @item %>
+ 	<%= link_to 'Edit', edit_profile_path(@profile), class: 'btn btn-warning-lg' %>
  <% end %>
 
- </div></div></div></div>
+<%= link_to "Buy", orders_path(item_id: @item), method: :post, class: 'btn btn warning' %>
+
+  <% if current_user.profile == @profile %>
+ 	<%= link_to 'Back', edit_profile_path(@profile), class: 'btn btn-warning' %>
+ <% end %>
+
+ <script type="text/javascript">
+handler = Gmaps.build('Google');
+handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+  markers = handler.addMarkers([
+    {
+      "lat": 0,
+      "lng": 0,
+      "picture": {
+        "url": "http://people.mozilla.com/~faaborg/files/shiretoko/firefoxIcon/firefox-32.png",
+        "width":  32,
+        "height": 32
+      },
+      "infowindow": "hello!"
+    }
+  ]);
+  handler.bounds.extendWith(markers);
+  handler.fitMapToBounds();
+});
+</script>
+
+
+ </div>
+ </div>
+ </div>
+ </div>

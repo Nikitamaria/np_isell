@@ -1,6 +1,13 @@
+<%if user_signed_in?%>
+<div class="jumbotron">
+	<h1>Welcome to iSell</h1>
+	<h3>Are you ready to shop?</h3>
+	<%= image_tag('cat.gif', draggable: "true", id: "drag1") %>
+</div>
+<% else %>
 <div class="jumbotron">
 	<h1>iSell</h1>
-	<h3>Where people come to buy stuff</h3>
+	<h3>Where people come to buy stuff!</h3>
 	<!-- <button type="button" class="btn btn-primary">Sign Up</button>
 	<button type="button" class="btn btn-info">Sign In</button> -->
 
@@ -8,4 +15,7 @@
 	<%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary" %>
 	<%= link_to "Sign In", new_user_session_path, class: "btn btn-info" %>
 </div>
+<% end %>
+
+
 
